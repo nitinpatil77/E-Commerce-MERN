@@ -9,7 +9,9 @@ function Header() {
   const [visiable, setVisiable] = useState(false);
   return (
     <div className="flex justify-between items-center py-5">
-      <img src={assets.logo} alt="nav-logo" className="w-36" />
+      <Link to='/'>
+        <img src={assets.logo} alt="nav-logo" className="w-36" />
+      </Link>
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700 font-medium">
         <Link to="/" className="flex flex-col items-center gap-1 uppercase">
           Home

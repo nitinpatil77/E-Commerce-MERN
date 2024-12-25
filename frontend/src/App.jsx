@@ -10,6 +10,7 @@ import Contact from '../src/pages/Contact.jsx';
 import Orders from '../src/pages/Orders.jsx';
 import PlaceOrder from '../src/pages/PlaceOrder.jsx';
 import Product from '../src/pages/Product.jsx';
+import SearchBar from './components/SearchBar.jsx';
 function App() {
   const router=createBrowserRouter([
     {
@@ -17,6 +18,7 @@ function App() {
       element:(
         <>
           <Header/>
+          <SearchBar/>
           <Outlet/>
           <Footer/>
         </>

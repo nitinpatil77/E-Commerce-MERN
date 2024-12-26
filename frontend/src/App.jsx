@@ -11,62 +11,64 @@ import Orders from '../src/pages/Orders.jsx';
 import PlaceOrder from '../src/pages/PlaceOrder.jsx';
 import Product from '../src/pages/Product.jsx';
 import SearchBar from './components/SearchBar.jsx';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
-  const router=createBrowserRouter([
+  const router = createBrowserRouter([
     {
-      path:'/',
-      element:(
-        <>
-          <Header/>
-          <SearchBar/>
-          <Outlet/>
-          <Footer/>
+      path: '/',
+      element: (
+        <><ToastContainer />
+          <Header />
+          <SearchBar />
+          <Outlet />
+          <Footer />
         </>
       ),
-      children:[
+      children: [
         {
-          path:'',
-          element:<Home/>
+          path: '',
+          element: <Home />
         },
         {
-          path:'/about',
-          element:<About/>
+          path: '/about',
+          element: <About />
         },
         {
-          path:'/collection',
-          element:<Collection/>
+          path: '/collection',
+          element: <Collection />
         },
         {
-          path:'/contact',
-          element:<Contact/>
+          path: '/contact',
+          element: <Contact />
         },
         {
-          path:'/cart',
-          element:<Cart/>
+          path: '/cart',
+          element: <Cart />
         },
         {
-          path:'/login',
-          element:<Login/>
+          path: '/login',
+          element: <Login />
         },
         {
-          path:'/orders',
-          element:<Orders/>
+          path: '/orders',
+          element: <Orders />
         },
         {
-          path:'/product/:productId',
-          element:<Product/>
+          path: '/product/:productId',
+          element: <Product />
         },
         {
-          path:'place-order',
-          element:<PlaceOrder/>
+          path: 'place-order',
+          element: <PlaceOrder />
         },
       ]
     }
   ])
   return (
-   <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
-     <RouterProvider router={router} />
-   </div>
+    <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+      <RouterProvider router={router} />
+    </div>
   )
 }
 

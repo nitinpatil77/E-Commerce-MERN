@@ -8,6 +8,10 @@
   font-family: Outfit;
 }
 
+::-webkit-scrollbar{
+  display: none;
+}
+
 .prata-regular {
   font-family: "Prata", serif;
   font-weight: 400;

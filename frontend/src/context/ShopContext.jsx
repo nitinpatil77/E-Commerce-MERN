@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { products } from '../assets/assets.js';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export const ShopContext = createContext();
 
@@ -13,7 +14,7 @@ const ShopContextProvider = (props) => {
 
     const addToCart=async (itemId,size)=>{
         
-        let cartData=structuredClone(cartItems);
+        let cartData=structuredClone(cartItems); // deep copy of cartItems
 
         if(!size){
             toast.error('Select Product Size')
@@ -50,6 +51,28 @@ const ShopContextProvider = (props) => {
         return totalCount;
     }
 
+    const updateQuantity = async(itemId,size,quantity)=>{
+
+        let cartData=structuredClone(cartItems); // deep copy of cartItems
+        cartData[itemId][size]=quantity;
+        setCartItems(cartData)
+    }
+
+    const getCartAmount = () => {
+        let totalAmount = 0;
+        for (const itemId in cartItems) {
+            const itemInfo = products.find(product => product._id === itemId);
+            if (!itemInfo) continue;
+    
+            for (const size in cartItems[itemId]) {
+                const qty = cartItems[itemId][size];
+                totalAmount += itemInfo.price * qty;
+            }
+        }
+        return totalAmount;
+    };
+    
+
     const value = {
         products,
         currency,
@@ -60,7 +83,9 @@ const ShopContextProvider = (props) => {
         setShowSearch,
         cartItems,
         addToCart,
-        getCartCount
+        getCartCount,
+        updateQuantity,
+        getCartAmount
     };
 
     return (

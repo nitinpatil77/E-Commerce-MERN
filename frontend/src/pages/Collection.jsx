@@ -90,6 +90,7 @@ function Collection() {
             ))}
           </div>
         </div>
+        {/* SubCategory */}
         <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? '' : 'hidden'} sm:block`}>
           <p className="uppercase mb-3 text-sm font-medium">type</p>
           <div className="flex flex-col gap-2 text-sm text-light text-gray-700">

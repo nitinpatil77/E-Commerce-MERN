@@ -4,6 +4,7 @@ import 'dotenv/config';
 import connectDB from './config/mongodb.js';
 import connectCloundinary from './config/cloudinary.js';
 import userRouter from './routes/userRoute.js';
+import productRouter from './routes/productRoute.js';
 
 // App Config
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());  // To parse JSON request bodies
 
 // API Endpoint
 app.use('/api/user',userRouter)
+app.use('/api/product',productRouter)
 
 app.get('/', (req, res) => {
     res.send('API Working');

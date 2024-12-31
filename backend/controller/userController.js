@@ -18,9 +18,9 @@ export const loginUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
       const token = createToken(user._id);
-      return res.json({ success: true, token });
+      return res.json({ success: true, token,message:'User logged in' });
     } else {
-      return res.json({ success: true, message: "Invalid credentails" });
+      return res.json({ success: false, message: "Invalid credentails" });
     }
   } catch (error) {
     console.log(error);
@@ -65,7 +65,7 @@ export const registerUser = async (req, res) => {
 
     const user = await newUser.save();
     const token = createToken(user._id);
-    res.json({ success: true, token }); // pass token into response
+    res.json({ success: true, token,message:'Account Created' }); // pass token into response
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });

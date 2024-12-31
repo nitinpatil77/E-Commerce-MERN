@@ -5,26 +5,28 @@ import { assets } from '../assets/assets.js';
 import { Link, useNavigate } from 'react-router-dom'
 import CartTotal from '../components/CartTotal.jsx';
 function Cart() {
-  const { products, currency, cartItems, updateQuantity} = useContext(ShopContext);
+  const { products, currency, cartItems, updateQuantity } = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
-  let navigate=useNavigate();
+  let navigate = useNavigate();
   useEffect(() => {
-    const tempData = [];
-    for (const items in cartItems) {
-      for (const item in cartItems[items]) {
-        if (cartItems[items][item]) {
-          const productData = products.find((product) => product._id === items);
-          tempData.push({
-            _id: items,
-            size: item,
-            price: productData.price,
-            quantity: cartItems[items][item]
-          })
+    if (products.length > 0) {
+      const tempData = [];
+      for (const items in cartItems) {
+        for (const item in cartItems[items]) {
+          if (cartItems[items][item]) {
+            const productData = products.find((product) => product._id === items);
+            tempData.push({
+              _id: items,
+              size: item,
+              price: productData.price,
+              quantity: cartItems[items][item]
+            })
+          }
         }
       }
+      setCartData(tempData)
     }
-    setCartData(tempData)
-  }, [cartItems])
+  }, [cartItems, products])
 
   return cartData.length > 0 ? (
     <div className='border-t pt-14'>
@@ -62,9 +64,9 @@ function Cart() {
       </div>
       <div className="flex justify-end my-20">
         <div className="w-full sm:w-[450px]">
-          <CartTotal/>
+          <CartTotal />
           <div className="w-full text-end">
-            <button onClick={()=>navigate('/place-order')} className='bg-black text-white text-sm my-8 px-8 py-3 uppercase'>proceed to checkout</button>
+            <button onClick={() => navigate('/place-order')} className='bg-black text-white text-sm my-8 px-8 py-3 uppercase'>proceed to checkout</button>
           </div>
         </div>
       </div>
@@ -78,9 +80,9 @@ function Cart() {
         </div>
       </div>
       <div className='flex flex-col justify-center items-center pt-12 sm:pt-24'>
-          <img src={assets.cart_icon} alt="cart_icon" className='mb-5' />
-          <p className='text-xl mb-6'>No items found in cart</p>
-          <Link to='/collection' className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700 uppercase'>Shop Now</Link >
+        <img src={assets.cart_icon} alt="cart_icon" className='mb-5' />
+        <p className='text-xl mb-6'>No items found in cart</p>
+        <Link to='/collection' className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700 uppercase'>Shop Now</Link >
       </div>
     </div>
   )

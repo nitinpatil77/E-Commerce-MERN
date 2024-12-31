@@ -96,8 +96,8 @@ function Add({ token }) {
           </select>
         </div>
         <div>
-          <p onChange={(e) => setSubCategory(e.target.value)} className="mb-2">Sub category</p>
-          <select className='w-full px-3 py-2'>
+          <p  className="mb-2">Sub category</p>
+          <select onChange={(e) => setSubCategory(e.target.value)} className='w-full px-3 py-2'>
             <option value="Topwear">Topwear</option>
             <option value="Bottomwear">Bottomwear</option>
             <option value="Winterwear">Winterwear</option>
@@ -105,7 +105,7 @@ function Add({ token }) {
         </div>
         <div>
           <p className="mb-2">Product Price</p>
-          <input onChange={(e) => setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px]' type="Number" placeholder='25' />
+          <input onChange={(e) => setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px]' type="Number" placeholder='25' required />
         </div>
       </div>
       <div>

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import Title from '../components/Title.jsx';
 import CartTotal from '../components/CartTotal.jsx'
 import { assets } from '../assets/assets.js';
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext.jsx';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -62,8 +62,17 @@ function PlaceOrder() {
           } else {
             toast.error(response.data.message)
           }
-        break; 
-        
+          break;
+        case 'stripe':
+
+          const responseStripe = await axios.post(backendUrl + '/api/order/stripe', orderData, { headers: { token } })
+          if (responseStripe.data.success) {
+            const { session_url } = responseStripe.data
+            window.location.replace(session_url)
+          } else {
+            toast.error(responseStripe.data.message)
+          }
+          break;
         default:
           break;
       }

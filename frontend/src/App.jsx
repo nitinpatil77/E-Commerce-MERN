@@ -13,6 +13,7 @@ import Product from '../src/pages/Product.jsx';
 import SearchBar from './components/SearchBar.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Verify from './pages/Verify.jsx';
 function App() {
   const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ function App() {
         {
           path: 'place-order',
           element: <PlaceOrder />
+        },
+        {
+          path: '/verify',
+          element: <Verify/>
         },
       ]
     }

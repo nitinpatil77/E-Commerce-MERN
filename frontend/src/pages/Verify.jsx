@@ -23,11 +23,11 @@ function Verify() {
             if (response.data.success) {
                 setCartItems({});
                 navigate('/orders')
-            } else {
+            } else {    
                 navigate('/cart')
             }
         } catch (error) {
-            console.log(error);
+            console.log(error); 
             toast.error(error.message)
         }
     }
